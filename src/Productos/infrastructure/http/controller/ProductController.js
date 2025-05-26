@@ -2,7 +2,7 @@ const ProductService = require('../../../application/services/ProductService');
 
 const productService = new ProductService();
 
-class ProductController{
+class ProductController {
     getAll = (request, response) => {
         productService.getAll((err, products) => {
             if (err) return response.status(500).json({ error: err.message })

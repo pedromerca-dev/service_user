@@ -9,7 +9,7 @@ const productController = new ProductController();
 router.get('/', productController.getAll);
 router.get('/:id', param('id').isInt().withMessage('Debe ser numero entero'), validateRequest, productController.getById);
 router.post('/', productController.create);
-router.put('/:id', productController.update);
-router.delete('/:id', productController.delete);
-
+router.put('/:id', param('id').isInt().withMessage('Debe ser numero entero'), validateRequest, productController.update);
+router.delete('/:id', param('id').isInt().withMessage('Debe ser numero entero'), validateRequest, productController.delete);
+  
 module.exports = router;
