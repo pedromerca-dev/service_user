@@ -26,6 +26,14 @@ class CategoriaService {
     delete(id, callback) {
         this.categoriaRepository.delete(id, callback);
     }
+
+    habilitar(id, callback) {
+        categoriaRepository.habilitarDeshabilitar(id, 1, callback);
+    }
+
+    deshabilitar(id, callback) {
+        categoriaRepository.habilitarDeshabilitar(id, 0, callback);
+    }
 }
 
 module.exports = CategoriaService;

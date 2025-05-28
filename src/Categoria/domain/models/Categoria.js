@@ -1,9 +1,9 @@
 class Category {
-    constructor({ id, nombre, descripcion, estado }) {
+    constructor({ id, nombre, descripcion, habilitado }) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estado = estado;
+        this.habilitado = habilitado;
     }
 }
 
