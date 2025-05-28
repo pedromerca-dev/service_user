@@ -9,7 +9,7 @@ router.get('/:id', categoriaController.getById);
 router.post('/', categoriaController.create);
 router.put('/:id', categoriaController.update);
 router.delete('/:id', categoriaController.delete);
-router.put('/habilitar/:id', categoriaController.habilitar);
-router.put('/deshabilitar/:id', categoriaController.deshabilitar);
+router.put('/:id/habilitar', categoriaController.habilitar);
+router.put('/:id/deshabilitar', categoriaController.deshabilitar);
 
 module.exports = router;

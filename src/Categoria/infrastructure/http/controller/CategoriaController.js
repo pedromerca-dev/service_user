@@ -40,7 +40,7 @@ class CategoryController {
 
     habilitar = (req, res) => {
         const id = req.params.id;
-        categoryService.habilitar(id, (err, result) => {
+        categoryService.habilitar(id, true, (err, result) => {
             if (err) return res.status(500).json({ error: err.message });
             res.status(200).json({ message: 'Categoría habilitada correctamente' });
         });
@@ -48,7 +48,7 @@ class CategoryController {
 
     deshabilitar = (req, res) => {
         const id = req.params.id;
-        categoryService.deshabilitar(id, (err, result) => {
+        categoryService.deshabilitar(id, false, (err, result) => {
             if (err) return res.status(500).json({ error: err.message });
             res.status(200).json({ message: 'Categoría deshabilitada correctamente' });
         });

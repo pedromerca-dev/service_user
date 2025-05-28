@@ -27,12 +27,12 @@ class CategoriaService {
         this.categoriaRepository.delete(id, callback);
     }
 
-    habilitar(id, callback) {
-        categoriaRepository.habilitarDeshabilitar(id, 1, callback);
+    habilitar(id, status, callback) {
+        categoriaRepository.habilitarDeshabilitar(id, status, callback);
     }
 
-    deshabilitar(id, callback) {
-        categoriaRepository.habilitarDeshabilitar(id, 0, callback);
+    deshabilitar(id, status, callback) {
+        categoriaRepository.habilitarDeshabilitar(id, status, callback);
     }
 }
 
