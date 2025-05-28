@@ -38,3 +38,14 @@ src/
 │   │           └── categoryRoutes.js
 │
 ```
+## Comandos git
+
+```sh
+- git stash
+- git pull origin feat
+- git stash apply
+- git add .
+- git commit -m ""
+- git push origin feat:feat
+
+```
