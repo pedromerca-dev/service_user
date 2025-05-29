@@ -11,5 +11,7 @@ router.get('/:id', param('id').isInt().withMessage('Debe ser numero entero'), va
 router.post('/', productController.create);
 router.put('/:id', param('id').isInt().withMessage('Debe ser numero entero'), validateRequest, productController.update);
 router.delete('/:id', param('id').isInt().withMessage('Debe ser numero entero'), validateRequest, productController.delete);
+router.put('/:id/habilitar', productController.habilitar);
+router.put('/:id/deshabilitar', productController.deshabilitar);
   
 module.exports = router;
