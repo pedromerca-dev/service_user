@@ -40,6 +40,22 @@ class ProductController {
         });
     }
 
+    habilitar = (req, res) => {
+        const id = req.params.id;
+        productService.habilitar(id, true, (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json({ message: 'Categoría habilitada correctamente' });
+        });
+    }
+
+    deshabilitar = (req, res) => {
+        const id = req.params.id;
+        productService.deshabilitar(id, false, (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json({ message: 'Categoría deshabilitada correctamente' });
+        });
+    }
+
 }
 
 module.exports = ProductController;

@@ -44,9 +44,9 @@ class CategoryRepository {
         });
     }
 
-    habilitarDeshabilitar(id, estado, callback) {
+    habilitarDeshabilitar(id, estatus, callback) {
         const sql = 'UPDATE categoria SET habilitado = ? WHERE id = ?';
-        const params = [estado ? 1 : 0, id];
+        const params = [estatus ? 1 : 0, id];
         connect.query(sql, params, (err, results) => {
             if (err) return callback(err);
             callback(null, results);

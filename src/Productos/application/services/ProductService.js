@@ -31,6 +31,14 @@ class ProductService {
         this.productRepository.delete(id, callback);
 
     }
+
+    habilitar(id, status, callback) {
+        productRepository.habilitarDeshabilitar(id, status, callback);
+    }
+
+    deshabilitar(id, status, callback) {
+        productRepository.habilitarDeshabilitar(id, status, callback);
+    }
 }
 
 module.exports = ProductService;
