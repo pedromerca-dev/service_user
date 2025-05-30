@@ -1,45 +1,57 @@
 const connect = require('../../../Config/connection');
-const Categoria = require('../../domain/models/Categoria');
+const Category = require('../../domain/models/Categoria');
 
-class CategoriaRepository {
+class CategoryRepository {
     getAll(callback) {
-        connect.query('SELECT * FROM categoria', (err, results) => {
+        const sql = 'SELECT * FROM categoria WHERE habilitado = 1';
+        connect.query(sql, (err, results) => {
             if (err) return callback(err);
-            callback(null, results.map(r => new Categoria(r)));
+            callback(null, results.map(r => new Category(r)));
         });
     }
 
-    create(categoria, callback) {
-        const sql = 'INSERT INTO categoria (nombre, descripcion) VALUES (?, ?)';
-        const params = [categoria.nombre, categoria.descripcion];
-        connect.query(sql, params, (err, results) => {
+    create(category, callback) {
+        const sql = 'INSERT INTO categoria (nombre, descripcion, habilitado) VALUES (?, ?, 1)';
+        const params = [category.nombre, category.descripcion];
+        connect.query(sql, params, (err, result) => {
             if (err) return callback(err);
-            callback(null, { id: results.insertId, ...categoria });
+            callback(null, { id: result.insertId, ...category });
         });
     }
 
     getById(id, callback) {
-        connect.query('SELECT * FROM categoria WHERE id = ?', [id], (err, results) => {
+        const sql = 'SELECT * FROM categoria WHERE id = ? AND habilitado = 1';
+        connect.query(sql, [id], (err, results) => {
             if (err) return callback(err);
-            callback(null, results.map(r => new Categoria(r)));
+            callback(null, results.map(r => new Category(r)));
         });
     }
 
-    update(id, categoria, callback) {
+    update(id, category, callback) {
         const sql = 'UPDATE categoria SET nombre = ?, descripcion = ? WHERE id = ?';
-        const params = [categoria.nombre, categoria.descripcion, id];
-        connect.query(sql, params, (err, results) => {
+        const params = [category.nombre, category.descripcion, id];
+        connect.query(sql, params, (err) => {
             if (err) return callback(err);
-            callback(null, { id, ...categoria });
+            callback(null, { id, ...category });
         });
     }
 
     delete(id, callback) {
-        connect.query('DELETE FROM categoria WHERE id = ?', [id], (err) => {
+        const sql = 'UPDATE categoria SET habilitado = 0 WHERE id = ?';
+        connect.query(sql, [id], (err) => {
             if (err) return callback(err);
             callback(null);
         });
     }
+
+    habilitarDeshabilitar(id, estatus, callback) {
+        const sql = 'UPDATE categoria SET habilitado = ? WHERE id = ?';
+        const params = [estatus ? 1 : 0, id];
+        connect.query(sql, params, (err, results) => {
+            if (err) return callback(err);
+            callback(null, results);
+        });
+    }
 }
 
-module.exports = CategoriaRepository;
+module.exports = CategoryRepository;

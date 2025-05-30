@@ -10,18 +10,19 @@ app.use(express.json());
 
 // Rutas
 app.use('/v1', services);
+//RUTAS NO ENCONTRADAS
 app.use((req, res, next) => {
     const errors = new Error(`Ruta no encontrada: ${req.originalUrl}`);
     errors.status= 404;
     next(errors);
 })
 
-
+//MANEJO DE ERRORES
 app.use((err,req, res, next) => {
     const status = err.status || 500;
     const message = err.message || 'Error interno del servidor';
     res.status(status).json({status,error: true, message})
-}),
+});
 
 
 // Iniciar servidor
